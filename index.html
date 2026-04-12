@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills — Dave Robertson</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Satoshi:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0b09;
+    --bg-warm: #110f0b;
+    --surface: #1a1814;
+    --surface-2: #222018;
+    --border: #2e2a22;
+    --border-light: #3d3729;
+    --text: #e8e2d6;
+    --text-mid: #a8a08e;
+    --text-dim: #6b6556;
+    --amber: #d4a843;
+    --amber-bright: #ecc154;
+    --amber-glow: rgba(212, 168, 67, 0.08);
+    --amber-glow-strong: rgba(212, 168, 67, 0.15);
+    --ember: #c45d2c;
+    --teal: #5ba8a0;
+    --teal-glow: rgba(91, 168, 160, 0.1);
+    --violet: #9b7ec8;
+    --violet-glow: rgba(155, 126, 200, 0.1);
+    --cream: #f0e8d8;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'Satoshi', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scrollbar-color: var(--border) var(--bg); }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    z-index: 10000;
+  }
+
+  /* === NAV === */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(12, 11, 9, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: var(--amber); }
+
+  /* === HEADER === */
+  .page-header {
+    padding: 140px 40px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .page-header-overline {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  }
+
+  .page-header h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+  }
+
+  .page-header p {
+    font-size: 17px;
+    color: var(--text-mid);
+    max-width: 600px;
+    line-height: 1.75;
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+  }
+
+  /* === DOMAIN SECTIONS === */
+  .domain {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .domain-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .domain-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .domain-name {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--cream);
+  }
+
+  .domain-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    min-width: 40px;
+  }
+
+  /* === SKILL MATRIX === */
+  .skill-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .skill-cell {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 28px 24px;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-cell::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .skill-cell:hover {
+    border-color: var(--border-light);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .skill-cell:hover::after { transform: scaleX(1); }
+
+  .skill-cell h4 {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .skill-cell p {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .skill-level {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+  }
+
+  .skill-level-bar {
+    height: 3px;
+    border-radius: 2px;
+    flex: 1;
+    background: var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-level-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 2px;
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 0;
+  }
+
+  .skill-cell.visible .skill-level-fill { width: var(--level); }
+
+  .fill-amber { background: var(--amber); }
+  .fill-teal { background: var(--teal); }
+  .fill-violet { background: var(--violet); }
+  .fill-ember { background: var(--ember); }
+
+  .skill-level-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+    min-width: 48px;
+    text-align: right;
+  }
+
+  /* === TOOLCHAIN === */
+  .toolchain {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .toolchain-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 40px;
+  }
+
+  .tool-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tool-chip {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: var(--text-mid);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: default;
+  }
+
+  .tool-chip:hover {
+    color: var(--cream);
+    border-color: var(--amber);
+    background: var(--amber-glow);
+    transform: translateY(-2px);
+  }
+
+  .tool-chip.cat-ai { border-left: 3px solid var(--amber); }
+  .tool-chip.cat-lang { border-left: 3px solid var(--teal); }
+  .tool-chip.cat-infra { border-left: 3px solid var(--violet); }
+  .tool-chip.cat-data { border-left: 3px solid var(--ember); }
+
+  /* === PHILOSOPHY === */
+  .philosophy {
+    padding: 80px 40px 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+
+  .philosophy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 36px 32px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .philosophy-card:hover {
+    border-color: var(--border-light);
+    transform: translateY(-3px);
+  }
+
+  .philosophy-card h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .philosophy-card p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* === LEGEND === */
+  .legend {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .legend-dot.amber { background: var(--amber); }
+  .legend-dot.teal { background: var(--teal); }
+  .legend-dot.violet { background: var(--violet); }
+  .legend-dot.ember { background: var(--ember); }
+
+  /* === DIVIDER === */
+  .divider {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .divider-line {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  /* === FOOTER === */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-left {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-right a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-right a:hover { color: var(--amber); }
+
+  /* === ANIMATIONS === */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger > * {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .stagger.visible > * { opacity: 1; transform: translateY(0); }
+  .stagger.visible > *:nth-child(1) { transition-delay: 0ms; }
+  .stagger.visible > *:nth-child(2) { transition-delay: 60ms; }
+  .stagger.visible > *:nth-child(3) { transition-delay: 120ms; }
+  .stagger.visible > *:nth-child(4) { transition-delay: 180ms; }
+  .stagger.visible > *:nth-child(5) { transition-delay: 240ms; }
+  .stagger.visible > *:nth-child(6) { transition-delay: 300ms; }
+  .stagger.visible > *:nth-child(7) { transition-delay: 360ms; }
+  .stagger.visible > *:nth-child(8) { transition-delay: 420ms; }
+  .stagger.visible > *:nth-child(9) { transition-delay: 480ms; }
+  .stagger.visible > *:nth-child(10) { transition-delay: 540ms; }
+  .stagger.visible > *:nth-child(11) { transition-delay: 600ms; }
+  .stagger.visible > *:nth-child(12) { transition-delay: 660ms; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px) {
+    .nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .page-header, .domain, .toolchain, .philosophy { padding-left: 24px; padding-right: 24px; }
+    .philosophy-grid { grid-template-columns: 1fr; }
+    .skill-matrix { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="freelance-landing.html" class="nav-brand">Dave Robertson</a>
+  <ul class="nav-links">
+    <li><a href="freelance-landing.html#services">Services</a></li>
+    <li><a href="freelance-landing.html#approach">Approach</a></li>
+    <li><a href="#" class="active">Skills</a></li>
+    <li><a href="freelance-landing.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER -->
+<header class="page-header">
+  <div class="page-header-overline">Technical Profile</div>
+  <h1>Skills &amp; Expertise</h1>
+  <p>A comp-sci foundation applied across AI systems architecture, full-stack development, and neuro-symbolic research. These are the tools I reach for when building systems that need to work.</p>
+</header>
+
+<div class="divider"><hr class="divider-line"></div>
+
+<!-- LEGEND -->
+<div style="max-width:1400px;margin:0 auto;padding:24px 40px 0">
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot amber"></span>AI &amp; Architecture</div>
+    <div class="legend-item"><span class="legend-dot teal"></span>Languages &amp; Frameworks</div>
+    <div class="legend-item"><span class="legend-dot violet"></span>Infrastructure &amp; DevOps</div>
+    <div class="legend-item"><span class="legend-dot ember"></span>Data &amp; Visualization</div>
+  </div>
+</div>
+
+<!-- AI & ARCHITECTURE -->
+<section class="domain">
+  <div class="domain-header reveal">
+    <span class="domain-num">Domain 01</span>
+    <h2 class="domain-name">AI &amp; Systems Architecture</h2>
+    <div class="domain-line"></div>
+  </div>
+  <div class="skill-matrix stagger">
+    <div class="skill-cell">
+      <h4>Neuro-Symbolic Design</h4>
+      <p>Hybrid architectures combining neural inference with symbolic reasoning, constraint systems, and knowledge graphs.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-amber" style="--level:92%"></div></div>
+        <span class="skill-level-label">Expert</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Agent Orchestration</h4>
+      <p>Router design, tool contracts, state machines, retry/fallback logic. The harness that makes LLMs production-ready.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-amber" style="--level:90%"></div></div>
+        <span class="skill-level-label">Expert</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>LLM Integration</h4>
+      <p>Prompt engineering, fine-tuning strategies, hallucination mitigation, evaluation frameworks, and model selection.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-amber" style="--level:88%"></div></div>
+        <span class="skill-level-label">Advanced</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Knowledge Graphs &amp; GraphRAG</h4>
+      <p>Structured memory for grounded reasoning. Entity extraction, relationship modeling, graph-based retrieval.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-amber" style="--level:85%"></div></div>
+        <span class="skill-level-label">Advanced</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Validation &amp; Verification</h4>
+      <p>Symbolic postprocessing, constraint satisfaction, schema enforcement, recursive validation loops.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-amber" style="--level:87%"></div></div>
+        <span class="skill-level-label">Advanced</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Technical Research &amp; Writing</h4>
+      <p>Research briefs, architecture documentation, position papers, glossaries. Translating complexity into clarity.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-amber" style="--level:94%"></div></div>
+        <span class="skill-level-label">Expert</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr class="divider-line"></div>
+
+<!-- LANGUAGES & FRAMEWORKS -->
+<section class="domain">
+  <div class="domain-header reveal">
+    <span class="domain-num">Domain 02</span>
+    <h2 class="domain-name">Languages &amp; Frameworks</h2>
+    <div class="domain-line"></div>
+  </div>
+  <div class="skill-matrix stagger">
+    <div class="skill-cell">
+      <h4>TypeScript / JavaScript</h4>
+      <p>Full-stack development. React, Node.js, async patterns, type-safe architectures, build systems.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-teal" style="--level:90%"></div></div>
+        <span class="skill-level-label">Expert</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Python</h4>
+      <p>Data processing, ML pipelines, scripting, API development. FastAPI, pandas, numpy.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-teal" style="--level:85%"></div></div>
+        <span class="skill-level-label">Advanced</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>React</h4>
+      <p>Component architecture, hooks, state management, performance optimization, SSR/SSG.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-teal" style="--level:88%"></div></div>
+        <span class="skill-level-label">Advanced</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>HTML / CSS</h4>
+      <p>Semantic markup, responsive design, CSS Grid/Flexbox, animations, accessibility-first development.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-teal" style="--level:92%"></div></div>
+        <span class="skill-level-label">Expert</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Node.js</h4>
+      <p>Server-side JavaScript, REST APIs, middleware, real-time systems, CLI tooling.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-teal" style="--level:84%"></div></div>
+        <span class="skill-level-label">Advanced</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>SQL</h4>
+      <p>Relational modeling, query optimization, migrations. PostgreSQL, SQLite.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-teal" style="--level:78%"></div></div>
+        <span class="skill-level-label">Proficient</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr class="divider-line"></div>
+
+<!-- DATA & VISUALIZATION -->
+<section class="domain">
+  <div class="domain-header reveal">
+    <span class="domain-num">Domain 03</span>
+    <h2 class="domain-name">Data &amp; Visualization</h2>
+    <div class="domain-line"></div>
+  </div>
+  <div class="skill-matrix stagger">
+    <div class="skill-cell">
+      <h4>D3.js</h4>
+      <p>Interactive data visualizations, force-directed graphs, custom chart types, SVG manipulation.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-ember" style="--level:86%"></div></div>
+        <span class="skill-level-label">Advanced</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Information Architecture</h4>
+      <p>Structuring complex data for human comprehension. Glossaries, taxonomies, interactive explorers.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-ember" style="--level:90%"></div></div>
+        <span class="skill-level-label">Expert</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Research Synthesis</h4>
+      <p>Distilling dense technical domains into structured, navigable outputs. Benchmarks, comparisons, evidence mapping.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-ember" style="--level:92%"></div></div>
+        <span class="skill-level-label">Expert</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr class="divider-line"></div>
+
+<!-- INFRASTRUCTURE -->
+<section class="domain">
+  <div class="domain-header reveal">
+    <span class="domain-num">Domain 04</span>
+    <h2 class="domain-name">Infrastructure &amp; Tooling</h2>
+    <div class="domain-line"></div>
+  </div>
+  <div class="skill-matrix stagger">
+    <div class="skill-cell">
+      <h4>Git &amp; Version Control</h4>
+      <p>Branching strategies, CI/CD integration, collaborative workflows, monorepo management.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-violet" style="--level:90%"></div></div>
+        <span class="skill-level-label">Expert</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Vercel / Netlify</h4>
+      <p>Static site deployment, serverless functions, edge computing, preview environments.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-violet" style="--level:82%"></div></div>
+        <span class="skill-level-label">Proficient</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>GitHub Pages &amp; Actions</h4>
+      <p>Automated deployments, static hosting, CI pipelines, workflow automation.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-violet" style="--level:85%"></div></div>
+        <span class="skill-level-label">Advanced</span>
+      </div>
+    </div>
+    <div class="skill-cell">
+      <h4>Notion &amp; Workspace Systems</h4>
+      <p>Database architecture, schema design, automation, API integration. Knowledge management systems.</p>
+      <div class="skill-level">
+        <div class="skill-level-bar"><div class="skill-level-fill fill-violet" style="--level:88%"></div></div>
+        <span class="skill-level-label">Advanced</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr class="divider-line"></div>
+
+<!-- TOOLCHAIN CLOUD -->
+<section class="toolchain">
+  <div class="toolchain-label reveal">Toolchain</div>
+  <div class="tool-cloud stagger">
+    <span class="tool-chip cat-ai">Claude API</span>
+    <span class="tool-chip cat-ai">OpenAI API</span>
+    <span class="tool-chip cat-ai">LangChain</span>
+    <span class="tool-chip cat-ai">LM Studio</span>
+    <span class="tool-chip cat-ai">Qwen</span>
+    <span class="tool-chip cat-ai">Ollama</span>
+    <span class="tool-chip cat-data">Neo4j</span>
+    <span class="tool-chip cat-lang">React</span>
+    <span class="tool-chip cat-lang">Next.js</span>
+    <span class="tool-chip cat-lang">Node.js</span>
+    <span class="tool-chip cat-lang">Express</span>
+    <span class="tool-chip cat-lang">FastAPI</span>
+    <span class="tool-chip cat-data">D3.js</span>
+    <span class="tool-chip cat-data">Recharts</span>
+    <span class="tool-chip cat-data">pandas</span>
+    <span class="tool-chip cat-infra">Git</span>
+    <span class="tool-chip cat-infra">GitHub Actions</span>
+    <span class="tool-chip cat-infra">Vercel</span>
+    <span class="tool-chip cat-infra">Docker</span>
+    <span class="tool-chip cat-infra">VS Code</span>
+    <span class="tool-chip cat-infra">Notion API</span>
+    <span class="tool-chip cat-data">PostgreSQL</span>
+    <span class="tool-chip cat-lang">Tailwind CSS</span>
+    <span class="tool-chip cat-ai">Vectara HHEM</span>
+  </div>
+</section>
+
+<div class="divider"><hr class="divider-line"></div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="domain-header reveal">
+    <span class="domain-num">Principles</span>
+    <h2 class="domain-name">How I Think About Technical Work</h2>
+    <div class="domain-line"></div>
+  </div>
+  <div class="philosophy-grid stagger">
+    <div class="philosophy-card">
+      <h3>Precision Ships</h3>
+      <p>Write in implementable components. State model, router loop, tool contracts, validators, memory graph, eval hooks. Label it "neurosymbolic" after it works, not before.</p>
+    </div>
+    <div class="philosophy-card">
+      <h3>The Harness Is the Product</h3>
+      <p>The model handles interpretation. Everything else — routing, validation, state, memory, scoring — is explicit, deterministic, and auditable. Reliability lives in the harness.</p>
+    </div>
+    <div class="philosophy-card">
+      <h3>Verifiability Over Truth</h3>
+      <p>Logic doesn't guarantee truth. It guarantees procedural correctness: constraints enforced, validators run, fallbacks triggered. That's the confidence inference alone can't provide.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">© 2026 Dave Robertson</div>
+  <div class="footer-right">
+    <a href="freelance-landing.html">Home</a>
+    <a href="https://davehomeassist.github.io/nesy/">NeSy Research</a>
+    <a href="mailto:daverobertson9353@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+document.querySelectorAll('.reveal, .stagger, .skill-cell').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
