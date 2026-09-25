@@ -4,6 +4,14 @@ Skill definitions for the PromptLab ecosystem. Each skill is a reusable prompt p
 
 ---
 
+## Operating Conventions
+
+| Convention | Purpose | Description |
+|---|---|---|
+| **[Status Naming](status-naming.md)** | One name that carries the status light | `Project \| 🚦 \| Phase \| Title → state, reason \| MM-DD`, used for chat status titles, session titles and Notion status-run names. |
+
+---
+
 ## Core Skills
 
 | Skill | Purpose | Description |
