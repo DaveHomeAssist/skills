@@ -92,5 +92,5 @@ Status Check Runs "Human Name"):
   Add ⏳ scheduled, 🙋 awaiting Dave or 🚧 blocked to 🟡/🔴/⚪, never to 🟢.
 - Phase: Research, Design, Build, Audit or Scheduled. MM-DD: date of the latest light change.
 - Every light change gets a new name: a `RENAME:` line in chat and the Notion row updated.
-- Canonical source: https://github.com/DaveHomeAssist/skills/blob/main/status-naming.md
+- Canonical source: https://github.com/DaveHomeAssist/skills/blob/master/status-naming.md
 ```
