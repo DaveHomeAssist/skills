@@ -1,44 +1,106 @@
 ---
 name: Status Naming
 category: Operating Convention
-purpose: Give work a recognizable project, phase, title and date while preserving manual names
+purpose: Stable session identity with a canonical project and parent/subproject emoji map
 ---
 
-# Status Naming
+# Session naming
 
-Updated by Dave on 2026-10-18. This is the canonical source; repository copies
-inherit it. It supersedes status-light titles and date-plus-time naming formats.
+Canonical rule, updated at Dave's direction on 2026-10-18. Repository adapters,
+logging skills and communications instructions defer here. Direct current user
+instructions and deliberate manual titles take precedence. This replaces earlier
+status-light, creation-date, clock-time and status-change rename schemes.
 
 ## Format
 
-`<emoji> <Project> | <PHASE> | <Title> <MM-DD>`
-
-Examples:
+`<emoji(s)> <Project> | <PHASE> | <Title> <MM-DD>`
 
 - `🕹️🔫 BlockBiz | BUILD | BUS073 Work 10-17`
+- `🕹️🎤 Front of House | REVIEW | Stage Controls 10-18`
+- `👾 DaveLLM | FIX | Tool Routing 10-18`
 - `🧪 PromptLab | REVIEW | Create Slice 2A 10-18`
-- `🏰 EMPIRES | BUILD | Sprite Rendering 10-18`
 
-## Rules
+Preserve normal project spelling and capitalization and useful identifiers such
+as BUS073. Use a concise, recognizable scope. Standard phases are RESEARCH,
+PLAN, DESIGN, BUILD, FIX, AUDIT, REVIEW, VERIFY, RELEASE, OPS and SCHEDULED.
+Select the phase from actual work, not from a completion claim.
 
-- Lead with the established project emoji (one or more symbols) and preserve the project's normal spelling and capitalization.
-- Use an uppercase phase: RESEARCH, PLAN, DESIGN, BUILD, FIX, AUDIT, REVIEW, VERIFY, RELEASE, OPS or SCHEDULED.
-- Keep the title concise and recognizable; preserve identifiers such as BUS073 and filenames.
-- End with the task's creation date in America/New_York as MM-DD; retain it across status changes. Use the current Eastern date when first applying the format to an undated task.
-- Do not include a status light, progress badge, reason, clock time or automatic date rollover. Put status, evidence and blockers in the body.
-- Preserve a title Dave sets manually, even if it differs from this format. Naming rules never authorize overwriting his title; rename it only when he explicitly asks.
-- For agent-generated titles, update only when the work's material scope changes or Dave asks; unchanged checks and status changes do not trigger a rename.
-- Existing historical logs and Notion rows retain their names; do not bulk rename tasks or write to Notion solely to enforce this format.
+## Date and stability
 
-## Status reporting
+MM-DD is the verified latest meaningful conversation activity date in
+America/New_York when an authorized title is generated or updated. Use actual
+conversation evidence; a rename, metadata cleanup or status poll is not meaningful
+activity. Do not substitute the creation date or today's date for unavailable
+activity evidence. Leave an existing title unchanged when that evidence is uncertain.
+For a new conversation, the current substantive request supplies the activity date.
+The date stays stable between authorized naming events: no daily rollover, periodic
+refresh or status-change rename. Put exact timestamps and verification status in
+the report body, never in the title.
 
-Status remains evidence based and belongs in the report body. The familiar
-Green/Yellow/Red/Grey or traffic-light indicators may still describe verification
-there; they are not title fields. A stable task title never proves completion.
-Use the same user-approved title when an authorized status record needs a name;
-creating or renaming that record requires the normal task scope and readback.
+## Emoji map
 
-## Repository copy
+A standalone project uses one emoji. A project family with subprojects uses two:
+parent first, subproject second, with no space between them. Family-wide work uses
+the explicitly mapped overview/catalog symbol as its second emoji. Never add a
+third status, clock, cloud or workflow symbol to a newly generated standard title.
+These mappings establish the naming registry; they do not change product ownership.
 
-Repository instructions should link to this document, reproduce the format and
-manual-title preservation rule, and remove contradictory local naming formats.
+| Parent / standalone | Scope / project label | Prefix |
+| --- | --- | --- |
+| MixMash | MixMash (family-wide work) | 🕹️🗂️ |
+| MixMash | MixMash Catalog | 🕹️🗂️ |
+| MixMash | BlockBiz | 🕹️🔫 |
+| MixMash | Front of House | 🕹️🎤 |
+| MixMash | EMPIRES | 🕹️🏰 |
+| MixMash | Horseshoes | 🕹️🐴 |
+| MixMash | Curling Simulator | 🕹️🥌 |
+| MixMash | Zelda2MarioCoop | 🕹️🍄 |
+| FMP | FMP (family-wide work) | 🏟️🗂️ |
+| FMP | FMP Displays | 🏟️📺 |
+| FMP | FMP Cameras | 🏟️🎥 |
+| FMP | FMP Switcher Ops | 🏟️🎛️ |
+| Standalone | DaveLLM | 👾 |
+| Standalone | PromptLab | 🧪 |
+| Standalone | System by Dave | ⚙️ |
+| Standalone | AVbyDave | 🎥 |
+| Standalone | CueForge | 🎬 |
+| Standalone | NoteForge | 📝 |
+| Standalone | Garden OS | 🪴 |
+| Standalone | CurlPlan | 🥌 |
+| Standalone | Syrum | 🌊 |
+| Standalone | Workspace | 🗂️ |
+
+The Catalog/overview symbol 🗂️ is now a defined mapping, replacing its previous
+provisional cleanup assignment. For an unlisted project, preserve its verified
+existing symbol and label; do not invent parentage or borrow a similar project's
+identity. Record a new mapping here when the project relationship is established.
+
+## Purposeful exceptions and boundaries
+
+- Preserve any title Dave sets manually, even if nonconforming. Only an explicit
+  request to rename that particular title overrides it.
+- Bulk cleanup excludes active, pinned, reference, owner, automation and uncertain
+  sessions. Their existing names remain protected. An explicit scoped request may
+  name a specific exception; this policy itself does not authorize touching them.
+- Existing project/sidebar labels (including repeated emojis), cloud/clock workflow
+  labels and durable owner labels are separate surfaces. Preserve them until their
+  purpose and specific change authority are known.
+- Historical logs, Notion records, filenames, routing tokens, database IDs, product
+  labels and scheduled-job identifiers retain their own contracts. Do not retrofit
+  them or synchronize them automatically with a chat title.
+- A communications entry records the existing manual title, or a canonical proposed
+  title if needed. Writing the entry does not rename the chat.
+- A requested status report retains evidence-based Green/Yellow/Red/Grey or traffic
+  lights in its body. Verification requirements remain intact. A title proves no
+  completion, merge, deployment or physical acceptance.
+- An independently authorized new log or Notion record may use the session title;
+  its schema, status fields, routing and write/readback rules still govern it.
+
+## Propagation and validation
+
+Adapters link here instead of copying the map or date rules. Remove superseded
+local title schemas, automatic RENAME directives and status-triggered Notion writes.
+A deliberate local exception must identify its scope and purpose and stay within
+higher authority. A report-only audit checks format and mapping only for eligible,
+agent-generated titles; it reports protected and uncertain titles without mutation.
+Changing this policy does not authorize a bulk rename or wake existing sessions.

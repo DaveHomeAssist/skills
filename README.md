@@ -8,7 +8,7 @@ Skill definitions for the PromptLab ecosystem. Each skill is a reusable prompt p
 
 | Convention | Purpose | Description |
 |---|---|---|
-| **[Status Naming](status-naming.md)** | Project, phase, title and date | `<emoji> <Project> \| <PHASE> \| <Title> <MM-DD>`, used for chat status titles, session titles and Notion status-run names. |
+| **[Status Naming](status-naming.md)** | Project, phase, title and date | Canonical session format, parent/subproject emoji map and protected-title exceptions; status reporting and record writes remain separate. |
 
 ---
 
