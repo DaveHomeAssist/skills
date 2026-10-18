@@ -59,16 +59,21 @@ These mappings establish the naming registry; they do not change product ownersh
 | FMP | FMP Displays | 🏟️📺 |
 | FMP | FMP Cameras | 🏟️🎥 |
 | FMP | FMP Switcher Ops | 🏟️🎛️ |
-| Standalone | DaveLLM | 👾 |
+| DaveLLM (explicit primary-name exception) | DaveLLM | 👾 |
+| DaveLLM | DaveHarness | 👾🧰 |
 | Standalone | PromptLab | 🧪 |
-| Standalone | System by Dave | ⚙️ |
-| Standalone | AVbyDave | 🎥 |
+| System by Dave | System by Dave (family-wide work) | ⚙️🗂️ |
+| System by Dave | AVbyDave | ⚙️🎥 |
 | Standalone | CueForge | 🎬 |
 | Standalone | NoteForge | 📝 |
 | Standalone | Garden OS | 🪴 |
 | Standalone | CurlPlan | 🥌 |
 | Standalone | Syrum | 🌊 |
 | Standalone | Workspace | 🗂️ |
+
+Dave explicitly specified `👾 DaveLLM |`; that primary title keeps one emoji even
+though its named DaveHarness subproject uses the parent/subproject pair. Independent
+products remain independent even when another project hosts a release or links to them.
 
 The Catalog/overview symbol 🗂️ is now a defined mapping, replacing its previous
 provisional cleanup assignment. For an unlisted project, preserve its verified
