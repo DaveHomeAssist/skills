@@ -1,96 +1,44 @@
 ---
 name: Status Naming
 category: Operating Convention
-purpose: Give every piece of work one name that carries its status light
+purpose: Give work a recognizable project, phase, title and date while preserving manual names
 ---
 
 # Status Naming
 
-**Category:** Operating Convention
-**Purpose:** Give every piece of work one name that carries its status light
-
-This is the canonical source. Repositories carry a short copy of the format in
-their `AGENTS.md` or `CLAUDE.md`; when the two disagree, this file wins.
+Updated by Dave on 2026-10-18. This is the canonical source; repository copies
+inherit it. It supersedes status-light titles and date-plus-time naming formats.
 
 ## Format
 
-```
-Project | 🚦 | Phase | Title → state, reason | MM-DD
-```
+`<emoji> <Project> | <PHASE> | <Title> <MM-DD>`
 
-The same string is used everywhere the work is named:
+Examples:
 
-- the status title in chat (the first line of a status report),
-- the session title (the rename line),
-- the `Human Name` of the row in Notion **DB | Status Check Runs**.
-
-## Fields
-
-| Field | Rule |
-|---|---|
-| **Project** | The product or workstream, as named in DB \| Projects & Software (for example `System by Dave`, `Garden OS`). |
-| **🚦** | The light, then an optional modifier. |
-| **Phase** | One of `Research`, `Design`, `Build`, `Audit`, `Scheduled`. |
-| **Title → state, reason** | A short title for the work, an arrow, a state word, and the reason in a few words. |
-| **MM-DD** | The date of the latest light change. |
-
-### Lights
-
-| Light | Meaning |
-|---|---|
-| 🟢 | Complete and verified |
-| 🟡 | Partial or unconfirmed |
-| 🔴 | Not started, blocked or failed |
-| ⚪ | Unverifiable: no source of truth, or the query failed |
-
-### Modifiers
-
-Append to 🟡, 🔴 or ⚪, never to 🟢. A modifier never raises the light.
-
-| Modifier | Meaning |
-|---|---|
-| ⏳ | Scheduled: parked by design, clears on a known date (needs a Resolve By date) |
-| 🙋 | Awaiting Dave: needs a decision from Dave (needs a one-line ask) |
-| 🚧 | Blocked: external dependency (name the blocker) |
-| *(none)* | Active: actionable now, agent owned |
+- `🕹️🔫 BlockBiz | BUILD | BUS073 Work 10-17`
+- `🧪 PromptLab | REVIEW | Create Slice 2A 10-18`
+- `🏰 EMPIRES | BUILD | Sprite Rendering 10-18`
 
 ## Rules
 
-1. **Every light change produces a new name.** Give it in chat as a `RENAME:` line
-   and write it to the Notion row's `Human Name` in the same step.
-2. **One light per name.** If parts differ, use the lowest light and say which part
-   lags in the reason.
-3. **The title light and the table light match**, modifier included.
-4. **Verify before naming.** A light comes from a checked source (record, commit,
-   deploy, live page), never from the conversation alone. If nothing can be checked,
-   the light is ⚪.
+- Lead with the established project emoji (one or more symbols) and preserve the project's normal spelling and capitalization.
+- Use an uppercase phase: RESEARCH, PLAN, DESIGN, BUILD, FIX, AUDIT, REVIEW, VERIFY, RELEASE, OPS or SCHEDULED.
+- Keep the title concise and recognizable; preserve identifiers such as BUS073 and filenames.
+- End with the task's creation date in America/New_York as MM-DD; retain it across status changes. Use the current Eastern date when first applying the format to an undated task.
+- Do not include a status light, progress badge, reason, clock time or automatic date rollover. Put status, evidence and blockers in the body.
+- Preserve a title Dave sets manually, even if it differs from this format. Naming rules never authorize overwriting his title; rename it only when he explicitly asks.
+- For agent-generated titles, update only when the work's material scope changes or Dave asks; unchanged checks and status changes do not trigger a rename.
+- Existing historical logs and Notion rows retain their names; do not bulk rename tasks or write to Notion solely to enforce this format.
 
-## Examples
+## Status reporting
 
-```
-System by Dave | 🔴🙋 | Build | fmp-suite preview → back online, Branch needs None | 09-25
-System by Dave | 🟡 | Build | AV + three.js fixes → 3 merged, rig readback pending | 09-25
-System by Dave | 🟢 | Build | AV + three.js fixes → rig, Throwline, switcher guide live | 09-25
-Garden OS | 🟡⏳ | Scheduled | Frost alerts → built, activation parked to 10-15 | 09-25
-Tech | ⚪ | Research | Canon ELPH 340 HS teardown → no source record yet | 08-18
-```
+Status remains evidence based and belongs in the report body. The familiar
+Green/Yellow/Red/Grey or traffic-light indicators may still describe verification
+there; they are not title fields. A stable task title never proves completion.
+Use the same user-approved title when an authorized status record needs a name;
+creating or renaming that record requires the normal task scope and readback.
 
 ## Repository copy
 
-Paste this into a repository's `AGENTS.md` (or `CLAUDE.md` when that is the file
-agents read first):
-
-```markdown
-## Status naming
-
-Name work with one string everywhere (chat status title, session title, Notion
-Status Check Runs "Human Name"):
-
-`Project | 🚦 | Phase | Title → state, reason | MM-DD`
-
-- 🚦: 🟢 complete and verified · 🟡 partial · 🔴 not started, blocked or failed · ⚪ unverifiable.
-  Add ⏳ scheduled, 🙋 awaiting Dave or 🚧 blocked to 🟡/🔴/⚪, never to 🟢.
-- Phase: Research, Design, Build, Audit or Scheduled. MM-DD: date of the latest light change.
-- Every light change gets a new name: a `RENAME:` line in chat and the Notion row updated.
-- Canonical source: https://github.com/DaveHomeAssist/skills/blob/master/status-naming.md
-```
+Repository instructions should link to this document, reproduce the format and
+manual-title preservation rule, and remove contradictory local naming formats.
