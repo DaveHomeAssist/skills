@@ -95,9 +95,10 @@ identity. Record a new mapping here when the project relationship is established
   them or synchronize them automatically with a chat title.
 - A communications entry records the existing manual title, or a canonical proposed
   title if needed. Writing the entry does not rename the chat.
-- A requested status report retains evidence-based Green/Yellow/Red/Grey or traffic
-  lights in its body. Verification requirements remain intact. A title proves no
-  completion, merge, deployment or physical acceptance.
+- A requested status report follows the active workspace reporting contract and
+  its approved status vocabulary. This naming rule defines no separate status
+  system. Verification requirements remain intact. A title proves no completion,
+  merge, deployment or physical acceptance.
 - An independently authorized new log or Notion record may use the session title;
   its schema, status fields, routing and write/readback rules still govern it.
 
