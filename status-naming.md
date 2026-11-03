@@ -1,29 +1,32 @@
 ---
 name: Status Naming
 category: Operating Convention
-purpose: Stable session identity with a canonical project and parent/subproject emoji map
+purpose: Stable session identity with established project emoji categories
 ---
 
 # Session naming
 
-Canonical rule, updated at Dave's direction on 2026-10-18. Repository adapters,
+Canonical rule, updated at Dave's direction on 2026-11-03. Repository adapters,
 logging skills and communications instructions defer here. Direct current user
 instructions and deliberate manual titles take precedence. This replaces earlier
 status-light, creation-date, clock-time and status-change rename schemes.
 
 ## Format
 
-`<emoji(s)> <Project> | <PHASE> | <Title> <MM-DD>`
+`<project emoji> | <Title> | <Phase> | <MM-DD>`
 
-- `🕹️🔫 BlockBiz | BUILD | BUS073 Work 10-17`
-- `🕹️🎤 Front of House | REVIEW | Stage Controls 10-18`
-- `👾 DaveLLM | FIX | Tool Routing 10-18`
-- `🧪 PromptLab | REVIEW | Create Slice 2A 10-18`
+- `🧪 | Desktop Freeze and Quick Prompts | Audit | 10-27`
+- `🔫 | BUS073 Work | Build | 10-17`
+- `🎤 | Stage Controls | Review | 10-18`
+- `👾 | Tool Routing | Fix | 10-18`
 
-Preserve normal project spelling and capitalization and useful identifiers such
-as BUS073. Use a concise, recognizable scope. Standard phases are RESEARCH,
-PLAN, DESIGN, BUILD, FIX, AUDIT, REVIEW, VERIFY, RELEASE, OPS and SCHEDULED.
-Select the phase from actual work, not from a completion claim.
+The project heading supplies the project name; do not repeat it as a separate
+field in the chat title. Keep exactly four fields, separated by ` | `. Use a
+concise, recognizable title and preserve useful identifiers such as BUS073.
+Phases use title case: Research, Plan, Design, Build, Fix, Audit, Review, Verify,
+Release, Ops and Scheduled. Select the phase from actual work, not a completion
+claim. This format supersedes project-name-first, phase-before-title and mandatory
+parent/subproject-pair formats, including older literals in repository adapters.
 
 ## Date and stability
 
@@ -37,48 +40,52 @@ The date stays stable between authorized naming events: no daily rollover, perio
 refresh or status-change rename. Put exact timestamps and verification status in
 the report body, never in the title.
 
-## Emoji map
+## Emoji categories
 
-A standalone project uses one emoji. A project family with subprojects uses two:
-parent first, subproject second, with no space between them. Family-wide work uses
-the explicitly mapped overview/catalog symbol as its second emoji. Never add a
-third status, clock, cloud or workflow symbol to a newly generated standard title.
-These mappings establish the naming registry; they do not change product ownership.
+Use the project's established emoji consistently across its chats. Read the
+current project heading and verified project identity before selecting it.
+Decorative repeated symbols, cloud markers and host badges in a heading are not
+additional title fields. The Workspace and Systems headings provide examples:
+System Workflows uses ⚙️, Network + Homelab uses 🌐, Notion Agent uses 🧩 and
+Stream Deck uses 🎛️. Preserve those headings themselves.
 
-| Parent / standalone | Scope / project label | Prefix |
-| --- | --- | --- |
-| MixMash | MixMash (family-wide work) | 🕹️🗂️ |
-| MixMash | MixMash Catalog | 🕹️🗂️ |
-| MixMash | BlockBiz | 🕹️🔫 |
-| MixMash | Front of House | 🕹️🎤 |
-| MixMash | EMPIRES | 🕹️🏰 |
-| MixMash | Horseshoes | 🕹️🐴 |
-| MixMash | Curling Simulator | 🕹️🥌 |
-| MixMash | Zelda2MarioCoop | 🕹️🍄 |
-| FMP | FMP (family-wide work) | 🏟️🗂️ |
-| FMP | FMP Displays | 🏟️📺 |
-| FMP | FMP Cameras | 🏟️🎥 |
-| FMP | FMP Switcher Ops | 🏟️🎛️ |
-| DaveLLM (explicit primary-name exception) | DaveLLM | 👾 |
-| DaveLLM | DaveHarness | 👾🧰 |
-| Standalone | PromptLab | 🧪 |
-| System by Dave | System by Dave (family-wide work) | ⚙️🗂️ |
-| System by Dave | AVbyDave | ⚙️🎥 |
-| Standalone | CueForge | 🎬 |
-| Standalone | NoteForge | 📝 |
-| Standalone | Garden OS | 🪴 |
-| Standalone | CurlPlan | 🥌 |
-| Standalone | Syrum | 🌊 |
-| Standalone | Workspace | 🗂️ |
+Use one project emoji in a newly generated title. Existing parent/subproject
+pairs remain historical identities, not a requirement to repeat both symbols.
+An established substantial subproject may retain its established category emoji;
+do not create a category for each bug, phase, tool, machine or one-off task.
+Only branch into a new emoji category when distinct, substantial ongoing work
+justifies it. Record the durable scope and reason in this registry before using
+the new category consistently. A phase or status change never justifies a new
+emoji. Where identity is uncertain, preserve the existing title rather than guess.
 
-Dave explicitly specified `👾 DaveLLM |`; that primary title keeps one emoji even
-though its named DaveHarness subproject uses the parent/subproject pair. Independent
-products remain independent even when another project hosts a release or links to them.
+| Established project or category | Emoji |
+| --- | --- |
+| MixMash and its catalog | 🕹️ |
+| BlockBiz / Block Business | 🔫 |
+| Front of House | 🎤 |
+| EMPIRES | 🏰 |
+| Horseshoes | 🐴 |
+| Curling Simulator / CurlPlan | 🥌 |
+| Zelda2MarioCoop | 🍄 |
+| FMP | 🏟️ |
+| DaveLLM / DaveHarness | 👾 |
+| PromptLab | 🧪 |
+| System by Dave / System Workflows | ⚙️ |
+| AVbyDave | 🎥 |
+| CueForge | 🎟️ |
+| NoteForge | 📝 |
+| Garden OS | 🌿 |
+| Syrum | 🌊 |
+| Workspace organization | 🗂️ |
+| Dave computer workspace | 💻 |
+| Network + Homelab | 🌐 |
+| Notion Agent | 🧩 |
+| Stream Deck | 🎛️ |
 
-The Catalog/overview symbol 🗂️ is now a defined mapping, replacing its previous
-provisional cleanup assignment. For an unlisted project, preserve its verified
-existing symbol and label; do not invent parentage or borrow a similar project's
-identity. Record a new mapping here when the project relationship is established.
+The registry preserves established categories and does not change ownership or
+merge projects that share an emoji. Current deliberate project headings take
+precedence over an older registry symbol. For an unlisted project, preserve its
+verified existing emoji; add a new category only under the ongoing-work rule above.
 
 ## Purposeful exceptions and boundaries
 
