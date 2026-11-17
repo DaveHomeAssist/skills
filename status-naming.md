@@ -6,57 +6,54 @@ purpose: Stable session identity with established project emoji categories
 
 # Session naming
 
-Canonical rule, updated at Dave's direction on 2026-11-03. Repository adapters,
-logging skills and communications instructions defer here. Direct current user
-instructions and deliberate manual titles take precedence. This replaces earlier
-status-light, creation-date, clock-time and status-change rename schemes.
+Canonical rule, updated at Dave's direction on 2026-11-17. Repository adapters,
+logging skills, memories and communications instructions defer here. Direct
+current user instructions and deliberate manual titles take precedence. This
+replaces the 2026-11-03 `<emoji> | <Title> | <Phase> | <MM-DD>` rule and every
+earlier status-light (🚦, "→ state, reason"), project-name-first and
+time-in-the-middle scheme.
 
 ## Format
 
-`<project emoji> | <Title> | <Phase> | <MM-DD>`
+`<group emoji> | PHASE | Durable Purpose | MM-DD h:mm AM/PM`
 
-- `🧪 | Desktop Freeze and Quick Prompts | Audit | 10-27`
-- `🔫 | BUS073 Work | Build | 10-17`
-- `🎤 | Stage Controls | Review | 10-18`
-- `👾 | Tool Routing | Fix | 10-18`
+- `❄️ | FIX | Studio P3-P4 Temp Readback (PR 463) | 11-12 1:58 AM`
+- `❄️ | PREP | Lamp Change And AV Video Plan | 11-14 10:51 AM`
+- `📝 | OPS | Storage Register and Second-Copy Plan | 11-09 4:50 PM`
+- `☃️ | ORCHESTRATOR | Frozen Group Command | 11-17 1:06 AM`
 
-The project heading supplies the project name; do not repeat it as a separate
-field in the chat title. Keep exactly four fields, separated by ` | `. Use a
-concise, recognizable title and preserve useful identifiers such as BUS073.
-Phases use title case: Research, Plan, Design, Build, Fix, Audit, Review, Verify,
-Release, Ops and Scheduled. Select the phase from actual work, not a completion
-claim. This format supersedes project-name-first, phase-before-title and mandatory
-parent/subproject-pair formats, including older literals in repository adapters.
+Exactly four fields, separated by ` | `.
 
-## Date and stability
+- **Group emoji:** the emoji of the session's Claude Code sidebar group (for
+  example ❄️ Frozen, 🎥 AV By Dave, 🧪 Prompt Lab, 📝 Ops, 💻 Dev Tools,
+  🕹️ Games, 🧩 One Offs). Use the registry below when the session has no group
+  or the group has no emoji, and 📁 if neither applies. Use one emoji.
+- **PHASE:** one uppercase word or short phrase for the kind of work the session
+  owns from now on: RESEARCH, PLAN, DESIGN, BUILD, FIX, AUDIT, REVIEW, VERIFY,
+  PREP, RELEASE, ACCESS, OPS, FILE CLEANUP, SCHEDULED. ORCHESTRATOR is reserved
+  for a group's orchestrator session, which uses its persona emoji (☃️ for
+  Frozen) in place of the group emoji and stays pinned.
+- **Durable Purpose:** two to six words in Title Case naming why the session
+  still exists: the deliverable, owned area or blocker, not whatever it happened
+  to do first. Keep useful identifiers such as `(PR 463)` or `BUS073`. Don't
+  repeat the PHASE word. Keep a marker Dave added himself, such as KEEP.
+- **MM-DD h:mm AM/PM:** the session's creation time (`createdAt`) converted to
+  America/New_York. Late-evening UTC times fall on the previous day.
 
-MM-DD is the verified latest meaningful conversation activity date in
-America/New_York when an authorized title is generated or updated. Use actual
-conversation evidence; a rename, metadata cleanup or status poll is not meaningful
-activity. Do not substitute the creation date or today's date for unavailable
-activity evidence. Leave an existing title unchanged when that evidence is uncertain.
-For a new conversation, the current substantive request supplies the activity date.
-The date stays stable between authorized naming events: no daily rollover, periodic
-refresh or status-change rename. Put exact timestamps and verification status in
-the report body, never in the title.
+Keep the whole title under about 70 characters.
 
-## Emoji categories
+## Stability
 
-Use the project's established emoji consistently across its chats. Read the
-current project heading and verified project identity before selecting it.
-Decorative repeated symbols, cloud markers and host badges in a heading are not
-additional title fields. The Workspace and Systems headings provide examples:
-System Workflows uses ⚙️, Network + Homelab uses 🌐, Notion Agent uses 🧩 and
-Stream Deck uses 🎛️. Preserve those headings themselves.
+The date and time never change: they identify the session. Rename only when the
+session's durable purpose or phase has really changed, or on Dave's request.
+Status, verification results, traffic lights and "→ state" clauses belong in
+the report body, never in the title. A status change is not a reason to rename.
 
-Use one project emoji in a newly generated title. Existing parent/subproject
-pairs remain historical identities, not a requirement to repeat both symbols.
-An established substantial subproject may retain its established category emoji;
-do not create a category for each bug, phase, tool, machine or one-off task.
-Only branch into a new emoji category when distinct, substantial ongoing work
-justifies it. Record the durable scope and reason in this registry before using
-the new category consistently. A phase or status change never justifies a new
-emoji. Where identity is uncertain, preserve the existing title rather than guess.
+## Emoji registry
+
+The sidebar group emoji leads. This registry supplies the emoji for ungrouped
+sessions and for groups without one. Add a category only for substantial ongoing
+work, and record it here first.
 
 | Established project or category | Emoji |
 | --- | --- |
